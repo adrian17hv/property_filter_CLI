@@ -89,3 +89,7 @@ In this project, I have made some key technical choices to enhance user experien
 ### **Terminal-kit**
 
 **Terminal-kit** is used to display the results in the terminal in a more colorful and visually appealing way. It supports advanced text formatting, coloring, and other interactive terminal features, making the results easier to read and navigate.
+
+### **Faker**
+
+**Faker** is used to generate real wolrd aleatory mock data.
