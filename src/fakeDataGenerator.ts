@@ -41,7 +41,10 @@ export const generateProperty = (id: number): Property => {
     price: faker.number.int({ min: 150000, max: 1000000 }),
     rooms: faker.number.int({ min: 1, max: 6 }),
     bathrooms: faker.number.int({ min: 1, max: 5 }),
-    location: [faker.location.latitude(), faker.location.longitude()],
+    location: [
+      faker.number.float({ min: 24.396308, max: 49.384358 }), // this is the latitude range of america
+      faker.number.float({ min: -125.0, max: -66.93457 }), // this is the longitude range of america
+    ],
     description: generatePropertyDescription(),
     amenities: {
       yard: faker.datatype.boolean(),
