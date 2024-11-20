@@ -1,7 +1,7 @@
 import { properties } from "../fakeDataGenerator";
 import getDistance from "./getDistance";
 import { FilterManager } from "./filterManager";
-import { Comparator, Location } from "../types";
+import { Comparator, Location, QuestionType } from "../types";
 import { runQuestionByType } from "./runQuestionByType";
 import chalk from "chalk";
 import inquirer from "inquirer";
@@ -23,7 +23,7 @@ export function mapPropertyWithDistance(value: Location) {
   }));
 }
 
-export const createFilter = async () => {
+export const createFilter = async (): Promise<FilterManager> => {
   let filterManager;
   console.log(chalk.green("\nChoose an option to filter by:"));
   const menuChoices = Object.entries(menuOptions).map(([key, option]) => ({
@@ -40,14 +40,14 @@ export const createFilter = async () => {
     },
   ]);
 
-  const selectedOption = menuOptions[choice];
+  const selectedOption = menuOptions[choice as keyof typeof menuOptions];
 
   if (selectedOption) {
     const { key, title, type } = selectedOption;
-    const { comparator, value } = await runQuestionByType(title, type);
+    const { comparator, value } = await runQuestionByType(title, type as QuestionType);
 
     if (!comparator) {
-      filterManager = new FilterManager(mapPropertyWithDistance(value as any));
+      filterManager = new FilterManager(mapPropertyWithDistance(value));
       return filterManager;
     }
 

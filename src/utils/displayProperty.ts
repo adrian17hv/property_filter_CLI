@@ -1,4 +1,5 @@
 import { terminal as term } from "terminal-kit";
+import { Property } from "../types";
 
 const AMENITY_ICONS = {
   pool: "🏊",
@@ -6,7 +7,7 @@ const AMENITY_ICONS = {
   garage: "🚗",
 };
 
-export function displayProperty(filteredProperties: any[]) {
+export function displayProperty(filteredProperties: (Property & {distance?:number})[]) {
   if (filteredProperties.length > 0) {
     term.bold.green(`🌟 ${filteredProperties.length} Found Properties 🌟\n\n`);
     term.gray("   ──────────────────────────────────\n");
@@ -20,7 +21,7 @@ export function displayProperty(filteredProperties: any[]) {
 
       const presentAmenities = Object.keys(amenities)
         .filter((amenity) => amenities[amenity])
-        .map((amenity) => AMENITY_ICONS[amenity])
+        .map((amenity) => AMENITY_ICONS[amenity as (keyof typeof AMENITY_ICONS)])
         .join(" ");
 
       term

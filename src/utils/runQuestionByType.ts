@@ -21,7 +21,7 @@ async function handleNumberTypeQuestion(title: string) {
       name: "value",
       message: `Please provide a value to filter ${title}:`,
       validate: (input) =>
-        !isNaN(input) ? true : "Please enter a valid number.",
+       (input && !isNaN(input)) ? true : "Please enter a valid number.",
     },
   ]);
 
@@ -63,7 +63,7 @@ async function handleLocationTypeQuestion() {
       name: "latitude",
       message: "Introduce latitude (example: 40.730610):",
       validate: (input) =>
-        !isNaN(input) ? true : "Please enter a valid number for latitude.",
+        (input && !isNaN(input)) ? true : "Please enter a valid number for latitude.",
     },
   ]);
 
@@ -73,7 +73,7 @@ async function handleLocationTypeQuestion() {
       name: "longitude",
       message: "Introduce longitude (example: -73.935242):",
       validate: (input) =>
-        !isNaN(input) ? true : "Please enter a valid number for longitude.",
+        (input && !isNaN(input)) ? true : "Please enter a valid number for longitude.",
     },
   ]);
 

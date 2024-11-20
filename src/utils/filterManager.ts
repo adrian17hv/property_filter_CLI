@@ -24,7 +24,7 @@ export class FilterManager {
       if (compare) {
         filteredData = filteredData.filter((item) => {
           let valueToCompare;
-          valueToCompare = item[filter.key];
+          valueToCompare = item[filter.key as keyof typeof item];
           return compare(valueToCompare, filter.value);
         });
       }

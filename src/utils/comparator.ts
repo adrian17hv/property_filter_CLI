@@ -3,7 +3,10 @@ export const comparatorMap: Map<string, (a: any, b: any) => boolean> = new Map([
   ["lt", (a, b) => a < b],
   ["eq", (a, b) => a === b],
   ["includes", (a, b) => a.toLowerCase().includes(b.toLowerCase())],
-  ["includesGroup", (record, groupTypes) => {
-     return groupTypes.every((group) => record[group]);
-  }],
+  [
+    "includesGroup",
+    (record, groupTypes) => {
+      return groupTypes.every((group: string) => record[group]);
+    },
+  ],
 ]);
