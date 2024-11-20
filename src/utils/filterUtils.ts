@@ -5,6 +5,7 @@ import { Comparator, Location } from "../types";
 import { runQuestionByType } from "./runQuestionByType";
 import chalk from "chalk";
 import readLineInterface, { question } from "./readLineInterface";
+import { menuOptions } from "./menuOptions";
 
 export const validComparators: Comparator[] = [
   "gt",
@@ -14,34 +15,6 @@ export const validComparators: Comparator[] = [
   "includesGroup",
   "distance",
 ];
-
-export const menuOptions = {
-  "1": {
-    key: "squareFootage",
-    type: "number",
-    title: "Property square footage",
-  },
-  "2": {
-    key: "description",
-    type: "text",
-    title: "Description keyword",
-  },
-  "3": {
-    key: "amenities",
-    type: "group",
-    title: "Amenity",
-  },
-  "4": {
-    key: "price",
-    type: "number",
-    title: "Property price",
-  },
-  "5": {
-    key: "location",
-    type: "distance",
-    title: "Filter by distance",
-  },
-};
 
 export function mapPropertyWithDistance(value: Location) {
   return properties.map((prop) => ({
