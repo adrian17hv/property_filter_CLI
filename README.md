@@ -66,8 +66,15 @@ This will start the CLI, and you can interact with the menu to filter and search
 Once the CLI is running, you'll be prompted with a menu to select different filtering options, such as:
 
 1. Search by square footage
-2. Search by price
+2. Search by description keyword
 3. Search by amenities
+4. Search by price
+5. Search by distance
+
+## Example video
+
+https://github.com/user-attachments/assets/6cafbe0b-a646-4955-9454-d4dc24f8109b
+
 
 For each option, the program will prompt you for additional information (e.g., square footage, price, etc.), and it will display the results in your terminal. For properties that include location information, a clickable link to the property on **Google Maps** will be displayed.
 
