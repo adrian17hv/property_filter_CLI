@@ -4,7 +4,7 @@ import { FilterManager } from "./filterManager";
 import { Comparator, Location } from "../types";
 import { runQuestionByType } from "./runQuestionByType";
 import chalk from "chalk";
-import readLineInterface, { question } from "./readLineInterface";
+import inquirer from "inquirer";
 import { menuOptions } from "./menuOptions";
 
 export const validComparators: Comparator[] = [
@@ -26,19 +26,26 @@ export function mapPropertyWithDistance(value: Location) {
 export const createFilter = async () => {
   let filterManager;
   console.log(chalk.green("\nChoose an option to filter by:"));
+  const menuChoices = Object.entries(menuOptions).map(([key, option]) => ({
+    name: `${chalk.cyan(key)}. ${chalk.bold.green(option.title)}`,
+    value: key,
+  }));
 
-  Object.entries(menuOptions).forEach(([key, option]) => {
-    console.log(`${chalk.cyan(key)}. ${chalk.bold.green(option.title)}`);
-  });
+  const { choice } = await inquirer.prompt([
+    {
+      type: "list",
+      name: "choice",
+      message: "Please, select one of the above options:",
+      choices: menuChoices,
+    },
+  ]);
 
-  const choice = await question(
-    "Please, select one of the above options by typing the corresponding number: "
-  );
+  const selectedOption = menuOptions[choice];
 
-  const selectedOption = menuOptions[choice.trim()];
   if (selectedOption) {
     const { key, title, type } = selectedOption;
     const { comparator, value } = await runQuestionByType(title, type);
+
     if (!comparator) {
       filterManager = new FilterManager(mapPropertyWithDistance(value as any));
       return filterManager;
@@ -47,15 +54,13 @@ export const createFilter = async () => {
     filterManager = new FilterManager();
 
     if (!validComparators.includes(comparator as Comparator)) {
+      console.log(chalk.red("Invalid comparator. Restarting filter creation."));
       return createFilter();
     }
 
-    readLineInterface.close();
     filterManager.addFilter(key, comparator as Comparator, value);
   } else {
-    console.log(
-      chalk.red("Invalid option. Please try with a correct number option.")
-    );
+    console.log(chalk.red("Invalid option. Please try again."));
     return createFilter();
   }
 

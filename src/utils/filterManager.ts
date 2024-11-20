@@ -16,8 +16,8 @@ export class FilterManager {
     this.filters.set(key, newFilter);
   }
 
-  applyFilters(data: any[]): any[] {
-    let filteredData = [...data];
+  applyFilters(): any[] {
+    let filteredData = [...this.properties];
 
     this.filters.forEach((filter) => {
       const compare = comparatorMap.get(filter.comparator);
