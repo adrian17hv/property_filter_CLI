@@ -16,7 +16,7 @@ export class FilterManager {
     this.filters.set(key, newFilter);
   }
 
-  applyFilters(): any[] {
+  applyFilters(properties: Property[]): any[] {
     let filteredData = [...this.properties];
 
     this.filters.forEach((filter) => {
