@@ -10,7 +10,36 @@ Welcome to the **Superb Property CLI**! This command-line interface (CLI) tool a
 
 ## Installation
 
-To get started, clone this repository and install the required dependencies.
+To get started, follow these steps to ensure you're using the correct version of Node.js and to install the required dependencies.
+
+### Step 0: Install and Use NVM (Node Version Manager)
+
+1. **Install NVM**  
+   NVM is a version manager for Node.js, which allows you to install and switch between multiple versions of Node.js on your system.  
+   Follow the instructions to install NVM from the official [NVM GitHub page](https://github.com/nvm-sh/nvm) for your platform.
+
+2. **Install Node.js**  
+   After installing NVM, use it to install the required version of Node.js
+
+   ```bash
+   nvm install
+   ```
+
+3. **Use the Installed Node.js Version**  
+   Switch to the installed version:
+
+   ```bash
+   nvm use
+   ```
+
+4. **Verify Node.js Installation**  
+   Ensure that the correct version of Node.js is active:
+
+   ```bash
+   node -v
+   ```
+
+   This should display the Node.js version (`v22.11.0`).
 
 ### Step 1: Install Dependencies
 
@@ -19,6 +48,8 @@ Install the dependencies with npm:
 ```bash
 npm i
 ```
+
+This will install all the required packages defined in the `package.json`.
 
 ### Step 2: Run the CLI
 
@@ -42,7 +73,7 @@ For each option, the program will prompt you for additional information (e.g., s
 
 ## Technical Choices
 
-In this project, i have made some key technical choices to enhance user experience and improve the functionality of the CLI:
+In this project, I have made some key technical choices to enhance user experience and improve the functionality of the CLI:
 
 ### **Inquirer**
 
@@ -50,4 +81,4 @@ In this project, i have made some key technical choices to enhance user experien
 
 ### **Terminal-kit**
 
-**Terminal-kit** is used to display the results in the terminal in a more colorful and visually appealing way.
+**Terminal-kit** is used to display the results in the terminal in a more colorful and visually appealing way. It supports advanced text formatting, coloring, and other interactive terminal features, making the results easier to read and navigate.
